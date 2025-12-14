@@ -105,5 +105,3 @@ This project demonstrates advanced skills in:
 - **Full-Stack Development**: Complete web application lifecycle
 
 ---
-
-**BCom Information Systems Capstone Project | AI-Enhanced Insurance Technology**
