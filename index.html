@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InsureRisk - Insurance Underwriting Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <h1>InsureRisk Underwriting Tool</h1>
+                <p class="tagline">AI-Powered Risk Assessment for Insurance Underwriting</p>
+            </div>
+            <div class="auth-container">
+                <div class="user-welcome" id="user-welcome">
+                    <div class="user-avatar" id="user-avatar">U</div>
+                    <span>Welcome, <span id="username-display">User</span></span>
+                    <button class="auth-btn" id="logout-btn">Logout</button>
+                </div>
+                <button class="auth-btn" id="login-btn">Login</button>
+                <button class="auth-btn" id="register-btn">Register</button>
+            </div>
+        </header>
+        
+        <div class="landing-content" id="landing-content">
+            <h2>Advanced Insurance Risk Assessment</h2>
+            <p>Get instant risk assessments and premium calculations for insurance underwriting</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Risk Calculation</h3>
+                    <p>Advanced algorithms to calculate risk scores based on multiple factors</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Premium Estimation</h3>
+                    <p>Get accurate premium estimates based on risk assessment</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Data Visualization</h3>
+                    <p>Visual representations of risk factors and distributions</p>
+                </div>
+            </div>
+            
+            <button class="btn" id="try-demo-btn">Try Demo Without Login</button>
+        </div>
+        
+        <div class="app-content" id="app-content">
+            <!-- Document Scanner Section -->
+            <div class="card scanner-section">
+                <h2 class="card-title"><i class="fas fa-camera"></i> Document Scanner</h2>
+                <p>Upload photos of your driver's license or vehicle registration to auto-fill form fields</p>
+                
+                <div class="scanner-container">
+                    <div class="scanner-option">
+                        <div class="scanner-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <h3>Driver's License</h3>
+                        <p>Extract: Age, Name, Driving Experience</p>
+                        <input type="file" id="license-upload" accept="image/*" class="file-input">
+                        <label for="license-upload" class="btn scanner-btn">
+                            <i class="fas fa-upload"></i> Upload License
+                        </label>
+                    </div>
+                    
+                    <div class="scanner-option">
+                        <div class="scanner-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <h3>Vehicle Registration</h3>
+                        <p>Extract: Vehicle Type, Vehicle Value</p>
+                        <input type="file" id="registration-upload" accept="image/*" class="file-input">
+                        <label for="registration-upload" class="btn scanner-btn">
+                            <i class="fas fa-upload"></i> Upload Registration
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="scanner-preview" id="scanner-preview">
+                    <div class="preview-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p>Document preview will appear here</p>
+                    </div>
+                </div>
+                
+                <div class="scanner-status" id="scanner-status">
+                    Ready to scan documents
+                </div>
+            </div>
+            
+            <div class="main-content">
+                <div class="card">
+                    <h2 class="card-title">Applicant Information</h2>
+                    <form id="underwriting-form">
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" min="18" max="100" placeholder="Enter age (18-100)" required>
+                            <div class="input-hint">Must be between 18 and 100</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="drivingExperience">Driving Experience (Years)</label>
+                            <input type="number" id="drivingExperience" min="0" max="82" placeholder="Enter years of driving experience" required>
+                            <div class="input-hint">Enter 0 if no driving experience</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="vehicleType">Vehicle Type</label>
+                            <select id="vehicleType" required>
+                                <option value="" disabled selected>Select vehicle type</option>
+                                <option value="economy">Economy Car</option>
+                                <option value="sedan">Sedan</option>
+                                <option value="suv">SUV</option>
+                                <option value="sports">Sports Car</option>
+                                <option value="luxury">Luxury Vehicle</option>
+                                <option value="truck">Truck</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="vehicleValue">Vehicle Value (R)</label>
+                            <input type="number" id="vehicleValue" min="5000" max="150000" placeholder="Enter vehicle value in Rands" required>
+                            <div class="input-hint">Minimum R5,000 - Maximum R150,000</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="location">Location Risk Factor</label>
+                            <select id="location" required>
+                                <option value="" disabled selected>Select your location type</option>
+                                <option value="rural">Rural (Low Risk)</option>
+                                <option value="suburban">Suburban (Medium Risk)</option>
+                                <option value="urban">Urban (High Risk)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="claimsHistory">Previous Claims History</label>
+                            <select id="claimsHistory" required>
+                                <option value="" disabled selected>Select number of previous claims</option>
+                                <option value="0">No Previous Claims</option>
+                                <option value="1">1 Claim</option>
+                                <option value="2">2 Claims</option>
+                                <option value="3">3+ Claims</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="creditScore">Credit Score</label>
+                            <input type="number" id="creditScore" min="300" max="850" placeholder="Enter credit score (300-850)" required>
+                            <div class="input-hint">Typical range: 300 (poor) to 850 (excellent)</div>
+                        </div>
+                        
+                        <button type="button" id="calculate-btn" class="btn btn-block">Calculate Risk & Premium</button>
+                    </form>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title">Risk Assessment Results</h2>
+                    
+                    <div class="result-box">
+                        <p>Risk Score</p>
+                        <div class="risk-score" id="risk-score">--/100</div>
+                        <span class="risk-label" id="risk-label">Enter data and click Calculate</span>
+                    </div>
+                    
+                    <div class="result-box">
+                        <p>Recommended Premium</p>
+                        <div class="premium" id="premium">--</div>
+                        <p>per year</p>
+                    </div>
+                    
+                    <h3 class="card-title">Risk Factors</h3>
+                    <ul class="factors-list" id="factors-list">
+                        <li>
+                            <span>Age Factor</span>
+                            <span class="factor-value" id="age-factor">--</span>
+                        </li>
+                        <li>
+                            <span>Driving Experience</span>
+                            <span class="factor-value" id="experience-factor">--</span>
+                        </li>
+                        <li>
+                            <span>Vehicle Type</span>
+                            <span class="factor-value" id="vehicle-factor">--</span>
+                        </li>
+                        <li>
+                            <span>Location Risk</span>
+                            <span class="factor-value" id="location-factor">--</span>
+                        </li>
+                        <li>
+                            <span>Claims History</span>
+                            <span class="factor-value" id="claims-factor">--</span>
+                        </li>
+                        <li>
+                            <span>Credit Score</span>
+                            <span class="factor-value" id="credit-factor">--</span>
+                        </li>
+                    </ul>
+                    
+                    <h3 class="card-title">Risk Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="risk-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AI-Powered Risk Prediction Timeline -->
+            <div class="card timeline-card">
+                <h2 class="card-title"><i class="fas fa-chart-line"></i> AI-Powered Risk Prediction Timeline</h2>
+                <p class="subtitle">See how your risk score and premium might change over the next 5 years</p>
+                
+                <div class="timeline-container">
+                    <div class="timeline-controls">
+                        <button class="btn timeline-btn" id="predict-timeline-btn">
+                            <i class="fas fa-bolt"></i> Generate 5-Year Prediction
+                        </button>
+                        <div class="timeline-info">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Predictions are based on your current profile and historical trends</span>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <canvas id="timeline-chart"></canvas>
+                    </div>
+                    
+                    <div class="timeline-summary" id="timeline-summary">
+                        <div class="summary-card">
+                            <h4>Risk Trend</h4>
+                            <div class="trend-value" id="risk-trend">--</div>
+                            <p>Change over 5 years</p>
+                        </div>
+                        <div class="summary-card">
+                            <h4>Premium Trend</h4>
+                            <div class="trend-value" id="premium-trend">--</div>
+                            <p>Change over 5 years</p>
+                        </div>
+                        <div class="summary-card">
+                            <h4>Predicted Savings</h4>
+                            <div class="trend-value" id="predicted-savings">--</div>
+                            <p>Vs. market average</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Comparative Analysis Dashboard -->
+            <div class="card comparison-card">
+                <h2 class="card-title"><i class="fas fa-chart-bar"></i> Comparative Analysis Dashboard</h2>
+                <p class="subtitle">Compare your risk profile against anonymized market averages</p>
+                
+                <div class="comparison-controls">
+                    <div class="comparison-toggle">
+                        <span class="toggle-label">Show Comparison</span>
+                        <label class="switch">
+                            <input type="checkbox" id="comparison-toggle" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <select id="comparison-metric" class="comparison-select">
+                        <option value="all">All Metrics</option>
+                        <option value="risk">Risk Score Only</option>
+                        <option value="premium">Premium Only</option>
+                        <option value="age">Age Comparison</option>
+                        <option value="vehicle">Vehicle Comparison</option>
+                    </select>
+                </div>
+                
+                <div class="comparison-container">
+                    <div class="comparison-chart-container">
+                        <canvas id="comparison-chart"></canvas>
+                    </div>
+                    
+                    <div class="comparison-table">
+                        <h4>Your Profile vs Market Average</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>Your Value</th>
+                                    <th>Market Avg</th>
+                                    <th>Difference</th>
+                                </tr>
+                            </thead>
+                            <tbody id="comparison-table-body">
+                                <!-- Table will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="comparison-insights" id="comparison-insights">
+                        <h4><i class="fas fa-lightbulb"></i> Key Insights</h4>
+                        <p>Generate your risk assessment to see personalized insights</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>InsureRisk Underwriting Tool</p>
+        </footer>
+    </div>
+
+    <!-- Auth Modals -->
+    <div class="modal-overlay" id="auth-modal-overlay">
+        <div class="auth-modal">
+            <span class="close-modal" id="close-modal">&times;</span>
+            
+            <div class="auth-tabs">
+                <div class="auth-tab active" data-tab="login">Login</div>
+                <div class="auth-tab" data-tab="register">Register</div>
+            </div>
+            
+            <div class="auth-form active" id="login-form">
+                <h2>Login to Your Account</h2>
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="button" id="login-submit" class="btn btn-block">Login</button>
+            </div>
+            
+            <div class="auth-form" id="register-form">
+                <h2>Create an Account</h2>
+                <div class="form-group">
+                    <label for="register-name">Full Name</label>
+                    <input type="text" id="register-name" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" placeholder="Create a password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-confirm">Confirm Password</label>
+                    <input type="password" id="register-confirm" placeholder="Confirm your password" required>
+                </div>
+                
+                <button type="button" id="register-submit" class="btn btn-block">Register</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
