@@ -91,17 +91,8 @@ An advanced AI-powered insurance risk assessment tool with predictive analytics,
 - **FinTech Developers**: Reference implementation for AI insurance tech
 
 
-## 📄 **License**
+## Developer
 
-MIT License - Open for educational and commercial use
-
-## 👨‍💻 **Developer Notes**
-
-This project demonstrates advanced skills in:
-- **AI/ML Implementation**: Custom prediction algorithms
-- **Data Visualization**: Complex analytics dashboards
-- **OCR Technology**: Document processing simulation
-- **FinTech Solutions**: Insurance industry applications
-- **Full-Stack Development**: Complete web application lifecycle
+[**Andile Gift Shabalala**](https://www.linkedin.com/in/andile-gift-shabalala-2345bb313/)
 
 ---
